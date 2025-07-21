@@ -188,7 +188,8 @@
     images.forEach((src, index) => {
       const img = document.createElement('img');
       img.src = src;
-      img.className = 'slideshow-img' + (index === 0 ? ' active' : '');
+      img.classList.add('slideshow-img');
+      if (index === 0) img.classList.add('active');
       wrapper.appendChild(img);
     });
 

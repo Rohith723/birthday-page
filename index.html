@@ -64,6 +64,10 @@
       width: clamp(280px, 40vw, 350px);
       text-align: center;
       animation: bounceIn 1s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 500px; /* Ensures both cards are same height */
     }
 
     .image-wrapper {
@@ -122,12 +126,12 @@
 </head>
 <body>
 
+<!-- Confetti Canvas -->
 <canvas id="confetti-canvas"></canvas>
 
-<!-- Audio Player (hidden) -->
+<!-- Audio -->
 <audio id="happy-birthday" preload="auto">
-  <source src="birthday-song.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
+  <source src="birthday-song.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Landing Section -->
@@ -136,7 +140,7 @@
   <button class="launch-btn" onclick="launchPage()">Launch</button>
 </div>
 
-<!-- Cards Section -->
+<!-- Birthday Cards -->
 <div class="birthday-container" id="birthdayContent">
   <!-- Person 1 -->
   <div class="card">
@@ -159,22 +163,23 @@
   </div>
 </div>
 
+<!-- Script Section -->
 <script>
-  const images1 = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "14.jpg", "6.jpg", "7.jpg", "8.jpg", "16.jpg", "15.jpg"];
-  const images2 = ["9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "17.jpg"];
+  const images1 = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
+  const images2 = ["6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"];
 
   function launchPage() {
     document.getElementById('landing').style.display = 'none';
     document.getElementById('birthdayContent').style.display = 'flex';
+
     startConfetti();
     startSlideshow('imageWrapper1', images1);
     startSlideshow('imageWrapper2', images2);
 
-    // Play audio after user interaction
     const song = document.getElementById('happy-birthday');
     song.volume = 0.5;
-    song.play().catch(err => {
-      console.warn("Audio playback was blocked by browser:", err);
+    song.play().catch((err) => {
+      console.warn("User gesture required to play audio:", err);
     });
   }
 

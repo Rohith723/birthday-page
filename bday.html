@@ -78,14 +78,14 @@
     }
 
     .slideshow-img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 15px;
-      opacity: 0;
-      position: absolute;
-      transition: opacity 1s ease-in-out;
-    }
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain; /* 👈 Change this */
+  border-radius: 15px;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 1s ease-in-out;
+}
 
     .slideshow-img.active {
       opacity: 1;
@@ -93,10 +93,12 @@
     }
 
     .image-wrapper {
-      position: relative;
-      height: 300px;
-      margin-bottom: 15px;
-    }
+  position: relative;
+  width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
 
     .quote {
       font-size: 16px;
@@ -145,8 +147,8 @@
 
 
 <script>
-  const images1 = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
-  const images2 = ["6.jpg", "7.jpg"];
+  const images1 = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "14.jpg", "6.jpg", "7.jpg", "8.jpg", "16.jpg", "15.jpg"];
+  const images2 = ["9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg","17.jpg"];
 
   function launchPage() {
     document.getElementById('landing').style.display = 'none';
@@ -154,6 +156,7 @@
     startConfetti();
     startSlideshow('imageWrapper1', images1);
     startSlideshow('imageWrapper2', images2);
+    document.getElementById('happy-birthday').play(); // 🎵 Play birthday song
   }
 
   function startSlideshow(wrapperId, images) {
